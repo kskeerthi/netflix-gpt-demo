@@ -3,9 +3,11 @@ import Header from './Header'
 import { validateEmailAndPass } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+    const navigate = useNavigate();
     const[issignInForm , setIsSignInForm] = useState(true);
     const[errorMessage, setErrorMessage ] = useState("");
     const email = useRef(null);
@@ -23,7 +25,7 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                console.log(user);
+                navigate('/browse');
                 // ...
             })
             .catch((error) => {
@@ -37,7 +39,7 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user);
+                navigate('/browse');
                 // ...
             })
             .catch((error) => {
